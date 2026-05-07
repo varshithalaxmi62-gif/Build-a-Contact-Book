@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Modern Contact Book</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>📒 Contact Book</h1>
+
+        <p>Manage Your Contacts Easily</p>
+
+    </div>
+
+    <!-- Add Contact Form -->
+
+    <div class="form-section">
+
+        <form method="POST">
+
+            <input type="text"
+            name="name"
+            placeholder="👤 Enter Name"
+            required>
+
+            <input type="text"
+            name="phone"
+            placeholder="📞 Enter Phone Number"
+            required>
+
+            <input type="email"
+            name="email"
+            placeholder="✉ Enter Email"
+            required>
+
+            <button type="submit">
+                ➕ Add Contact
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Search -->
+
+    <div class="search-section">
+
+        <form action="/search" method="POST">
+
+            <input type="text"
+            name="keyword"
+            placeholder="🔍 Search Contact">
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Contact List -->
+
+    <div class="contact-grid">
+
+        {% for contact in contacts %}
+
+        <div class="card">
+
+            <div class="profile">
+
+                {{ contact.name[0] }}
+
+            </div>
+
+            <h2>{{ contact.name }}</h2>
+
+            <p>📞 {{ contact.phone }}</p>
+
+            <p>✉ {{ contact.email }}</p>
+
+            <a href="/delete/{{ loop.index0 }}">
+                Delete
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
